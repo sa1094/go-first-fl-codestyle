@@ -6,58 +6,62 @@ import (
 	"strings"
 )
 
+const Warrior string = "warrior"
+const Mage string = "mage"
+const Healer string = "healer"
+
 func attack(charName, charClass string) string {
 
 	switch charClass {
-	case "warrior":
+	case Warrior:
 		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+randint(3, 5))
 
-	case "mage":
+	case Mage:
 		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+randint(5, 10))
 
-	case "healer":
+	case Healer:
 		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+randint(-3, -1))
 	}
 	return "неизвестный класс персонажа"
 }
 
-// обратите внимание на "if else" и на "else"
+// обратите внимание на "if else" и на "else".
 func defence(charName, charClass string) string {
 
 	switch charClass {
-	case "warrior":
+	case Warrior:
 		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+randint(5, 10))
-	case "mage":
+	case Mage:
 		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+randint(-2, 2))
-	case "healer":
+	case Healer:
 		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+randint(2, 5))
 	}
 	return "неизвестный класс персонажа"
 }
 
-// обратите внимание на "if else" и на "else"
+// обратите внимание на "if else" и на "else".
 func special(charName, charClass string) string {
 
 	switch charClass {
-	case "warrior":
+	case Warrior:
 		return fmt.Sprintf("%s применил специальное умение `Выносливость %d`", charName, 80+25)
-	case "mage":
+	case Mage:
 		return fmt.Sprintf("%s применил специальное умение `Атака %d`", charName, 5+40)
-	case "healer":
+	case Healer:
 		return fmt.Sprintf("%s применил специальное умение `Защита %d`", charName, 10+30)
 	}
 	return "неизвестный класс персонажа"
 }
 
-// здесь обратите внимание на имена параметров
+// здесь обратите внимание на имена параметров.
 func startTraining(charName, charClass string) string {
 
 	switch charClass {
-	case "warrior":
+	case Warrior:
 		fmt.Printf("%s, ты Воитель - отличный боец ближнего боя.\n", charName)
-	case "mage":
+	case Mage:
 		fmt.Printf("%s, ты Маг - превосходный укротитель стихий.\n", charName)
-	case "healer":
+	case Healer:
 		fmt.Printf("%s, ты Лекарь - чародей, способный исцелять раны.\n", charName)
 	}
 
@@ -87,7 +91,7 @@ func startTraining(charName, charClass string) string {
 	return "тренировка окончена"
 }
 
-// обратите внимание на имя функции и имена переменных
+// обратите внимание на имя функции и имена переменных.
 func charClass() string {
 	var approveChoice string
 	var charClass string
@@ -95,11 +99,12 @@ func charClass() string {
 	for approveChoice != "y" {
 		fmt.Print("Введи название персонажа, за которого хочешь играть: Воитель — warrior, Маг — mage, Лекарь — healer: ")
 		fmt.Scanf("%s\n", &charClass)
-		if charClass == "warrior" {
+		switch charClass {
+		case Warrior:
 			fmt.Println("Воитель — дерзкий воин ближнего боя. Сильный, выносливый и отважный.")
-		} else if charClass == "mage" {
+		case Mage:
 			fmt.Println("Маг — находчивый воин дальнего боя. Обладает высоким интеллектом.")
-		} else if charClass == "healer" {
+		case Healer:
 			fmt.Println("Лекарь — могущественный заклинатель. Черпает силы из природы, веры и духов.")
 		}
 		fmt.Print("Нажми (Y), чтобы подтвердить выбор, или любую другую кнопку, чтобы выбрать другого персонажа: ")
@@ -109,7 +114,7 @@ func charClass() string {
 	return charClass
 }
 
-// обратите внимание на имена переменных
+// обратите внимание на имена переменных.
 func main() {
 	fmt.Println("Приветствую тебя, искатель приключений!")
 	fmt.Println("Прежде чем начать игру...")
